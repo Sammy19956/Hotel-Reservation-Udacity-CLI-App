@@ -10,7 +10,7 @@ import java.util.Date;
 public class HotelResource{
 
      public static Customer getCustomer(String email){
-        return null;
+            return null;
      }
 
      public static void createACustomer(String email, String firstName, String lastName){

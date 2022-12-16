@@ -1,7 +1,5 @@
 package model;
 
-import Enums.RoomType;
-
 public class FreeRoom extends Room {
 
     public FreeRoom(String roomNumber, Double roomPrice, RoomType enumeration) {

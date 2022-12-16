@@ -1,4 +1,4 @@
-package Enums;
+package model;
 
 public enum RoomType {
     SINGLE,

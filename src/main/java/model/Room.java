@@ -1,12 +1,11 @@
 package model;
 
-import Enums.RoomType;
-
 public class Room implements IRoom {
 
     public String roomNumber;
     public Double price;
     public RoomType roomType;
+    public boolean isFree;
 
     public Room(String roomNumber, Double price, RoomType roomType) {
         this.roomNumber = roomNumber;
@@ -14,25 +13,24 @@ public class Room implements IRoom {
         this.roomType = roomType;
     }
 
-
     @Override
     public String getRoomNumber() {
-        return null;
+        return this.roomNumber;
     }
 
     @Override
     public Double getRoomPrice() {
-        return null;
+        return this.price;
     }
 
     @Override
     public RoomType getRoomType() {
-        return null;
+        return this.roomType;
     }
 
     @Override
     public boolean isFree() {
-        return false;
+        return this.isFree;
     }
 
     @Override

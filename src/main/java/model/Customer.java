@@ -7,13 +7,16 @@ public class Customer {
 
     public Customer(String firstName, String lastName, String email) {
         String regex = "^(.+)@(.+)$";
-        if (email.matches(regex)) {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.email = email;
-        } else {
-            throw new IllegalArgumentException("Invalid email");
-        }
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+//        if (email.matches(regex)) {
+//            this.firstName = firstName;
+//            this.lastName = lastName;
+//            this.email = email;
+//        } else {
+//            throw new IllegalArgumentException("Invalid email");
+//        }
     }
 
     @Override
@@ -23,6 +26,11 @@ public class Customer {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public void createAccount(String email, String firstName, String lastName) {
+        Customer customer = new Customer(firstName, lastName, email);
+        System.out.println(customer);
     }
 
 }

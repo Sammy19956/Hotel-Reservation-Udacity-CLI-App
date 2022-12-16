@@ -1,5 +1,11 @@
-import java.util.Scanner;
+package Menu;
 
+import api.AdminResource;
+import service.CustomerService;
+import service.ReservationService;
+import service.utils;
+
+import java.util.Scanner;
 public class AdminMenu {
 
     public static void printAdminMenu() {
@@ -16,23 +22,32 @@ public class AdminMenu {
 
         switch (option) {
             case 1:
-                System.out.println("See all customers");
+                System.out.println(CustomerService.getAllCustomers());
+                utils.exitAdminMenu();
                 break;
+
             case 2:
-                System.out.println("See all rooms");
+                System.out.println(AdminResource.getAllRooms());
+                utils.exitAdminMenu();
                 break;
+
             case 3:
-                System.out.println("See all reservations");
+                ReservationService.printAllReservation();
+                utils.exitAdminMenu();
                 break;
             case 4:
-                System.out.println("Add a room");
+                AdminResource.addRoom();
+                System.out.println("Room added successfully");
+                AdminMenu.printAdminMenu();
                 break;
             case 5:
-                System.out.println("Back to main menu");
+                MainMenu.printMenu();
                 break;
             default:
                 System.out.println("Invalid option");
+                AdminMenu.printAdminMenu();
                 break;
         }
+
     }
 }
