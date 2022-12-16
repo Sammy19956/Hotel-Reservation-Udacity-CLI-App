@@ -1,7 +1,5 @@
 package model;
 
-import Enums.RoomType;
-
 public interface IRoom {
 
     String getRoomNumber();
