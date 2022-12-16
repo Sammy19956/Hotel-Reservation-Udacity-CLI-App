@@ -34,14 +34,25 @@ public class MainMenu {
                 System.out.println(foundRoom);
                 if(foundRoom != null) {
                     ReservationService.reserveARoom(customer, foundRoom, new Date(), new Date());
-//                    System.out.println("Reservation of " + foundRoom.getRoomNumber() + " was successful");
+                    utils.exitMainMenu();
                 }else{
                     System.out.println("Room not available");
                     utils.exitMainMenu();
                 }
                 break;
             case 2:
-                System.out.println("See my reservations");
+                System.out.println("Enter you email ");
+                Scanner scanner3 = new Scanner(System.in);
+                String email2 = scanner3.nextLine();
+                Customer foundCustomer = CustomerService.getCustomer(email2);
+                if(foundCustomer != null){
+                    System.out.println("Your reservations are: " + ReservationService.getCustomersReservations(foundCustomer));
+                utils.exitMainMenu();
+
+                } else{
+                    System.out.println("Customer not found");
+                    utils.exitMainMenu();
+                }
                 break;
 
             case 3:
@@ -52,8 +63,8 @@ public class MainMenu {
                 System.out.println("Enter your last name: ");
                 String lastName = scanner2.nextLine();
                 System.out.println("Enter your email: ");
-                String email2 = scanner2.nextLine();
-                CustomerService.addCustomer(firstName, lastName, email2);
+                String email3 = scanner2.nextLine();
+                CustomerService.addCustomer(firstName, lastName, email3);
                 System.out.println("Account created successfully");
                 utils.exitMainMenu();
                 break;

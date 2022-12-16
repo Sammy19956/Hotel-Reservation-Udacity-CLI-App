@@ -6,9 +6,10 @@ import model.IRoom;
 import model.Reservation;
 import model.Room;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ReservationService {
-    static Collection<Reservation> reservations = new HashSet<>();
+    public static Collection<Reservation> reservations = new CopyOnWriteArrayList<>();
 //    static Collection<Room>  availableRooms = new ArrayList<>();
 
     static Room foundRoom;
@@ -28,19 +29,19 @@ public class ReservationService {
 
     public static Reservation reserveARoom(Customer customer, IRoom room, Date checkInDate, Date checkOutDate) {
         Reservation reservation = new Reservation(customer, room, checkInDate.toString(), checkOutDate.toString());
-        reservations.add(reservation);
         for(Room foundRoom2: AdminResource.rooms) {
             if(foundRoom2.getRoomNumber().equals(room.getRoomNumber())) {
+                ReservationService.reservations.add(reservation);
                 AdminResource.rooms.remove(foundRoom2);
             }
         }
-        System.out.println("Reservation of " + reservation.getRoom().getRoomNumber() + " has been reserved successfully");
+        System.out.println("Reservation of room " + reservation.getRoom().getRoomNumber() + " was successful");
         return reservation;
     }
 
     public static Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate) {
         List<IRoom> reservedRooms = new ArrayList<>();
-        for(Reservation reservation: reservations) {
+        for(Reservation reservation: ReservationService.reservations) {
            if(reservation.getCheckInDate().equals(checkInDate.toString()) && reservation.getCheckOutDate().equals(checkOutDate.toString())) {
                System.out.println(reservation.getRoom().getRoomNumber() + " is reserved");
                 reservedRooms.add(reservation.getRoom());
@@ -49,13 +50,14 @@ public class ReservationService {
         return reservedRooms;
     }
 
-    public static Collection<Reservation> getCustomersReservation(Customer customer) {
-        Collection<Reservation> customerReservations = new ArrayList<>();
+    public static Collection<Reservation> getCustomersReservations(Customer customer) {
+        Collection<Reservation> customerReservations = new CopyOnWriteArrayList<>();
         for(Reservation reservation: reservations) {
-            if(reservation.customer.equals(customer)) {
-                 customerReservations.add(reservation);
+            if(reservation.getCustomer().equals(customer)) {
+                customerReservations.add(reservation);
             }
         }
+
         return customerReservations;
     }
 

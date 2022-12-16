@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Customer {
     public String firstName;
     public String lastName;
@@ -27,6 +29,20 @@ public class Customer {
                 ", email='" + email + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Customer)) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(firstName, customer.firstName) && Objects.equals(lastName, customer.lastName) && Objects.equals(email, customer.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, email);
+    }
+
 
     public void createAccount(String email, String firstName, String lastName) {
         Customer customer = new Customer(firstName, lastName, email);

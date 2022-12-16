@@ -4,14 +4,16 @@ import model.Customer;
 import model.IRoom;
 import model.Room;
 import model.RoomType;
+import service.ReservationService;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class AdminResource {
 
-    public static Collection <Room> rooms = new ArrayList<>();
+    public static Collection <Room> rooms = new CopyOnWriteArrayList<>();
     public static Customer getCustomer(String email) {
         return null;
     }
@@ -52,8 +54,8 @@ public class AdminResource {
         return null;
     }
 
-    public void displayAllReservations() {
-
+    public static void displayAllReservations() {
+        System.out.println(ReservationService.reservations);
     }
 
 }
