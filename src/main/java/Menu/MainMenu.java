@@ -1,5 +1,6 @@
 package Menu;
 
+import api.CustomExceptions;
 import model.Customer;
 import model.Room;
 import service.ReservationService;
@@ -10,7 +11,7 @@ import java.util.Scanner;
 
 public class MainMenu {
 
-    public static void printMenu() {
+    public static void printMenu() throws CustomExceptions {
         System.out.println("Welcome to the Hotel Reservation System");
         System.out.println("Please select an option from the list below");
         System.out.println("1. Find and reserve a room");

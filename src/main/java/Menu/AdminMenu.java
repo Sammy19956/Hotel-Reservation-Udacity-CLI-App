@@ -1,6 +1,7 @@
 package Menu;
 
 import api.AdminResource;
+import api.CustomExceptions;
 import service.CustomerService;
 import service.ReservationService;
 import service.utils;
@@ -8,7 +9,7 @@ import service.utils;
 import java.util.Scanner;
 public class AdminMenu {
 
-    public static void printAdminMenu() {
+    public static void printAdminMenu() throws CustomExceptions {
         System.out.println("Welcome to the Admin Menu");
         System.out.println("Please select an option from the list below");
         System.out.println("1. See all customers");
@@ -37,7 +38,6 @@ public class AdminMenu {
                 break;
             case 4:
                 AdminResource.addRoom();
-                System.out.println("Room added successfully");
                 AdminMenu.printAdminMenu();
                 break;
             case 5:

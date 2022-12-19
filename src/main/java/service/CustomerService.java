@@ -7,16 +7,27 @@ import java.util.Collection;
 import java.util.List;
 
 public class CustomerService {
-    static List<Customer> customerList = new ArrayList<>();
+
+    private static CustomerService customerServiceInstance;
+
+    public static CustomerService getInstance(){
+        if (customerServiceInstance == null){
+            customerServiceInstance = new CustomerService();
+        }
+        return customerServiceInstance;
+    }
+
+//    static List<Customer> customerList = new ArrayList<>();
     static Customer foundCustomer;
     public static Collection<Customer> addCustomer(String email, String firstName, String lastName) {
         Customer customer = new Customer(firstName, lastName, email);
-        customerList.add(customer);
-        return customerList;
+        Customer.customerList.add(customer);
+//        customerList.add(customer);
+        return Customer.customerList;
     }
 
     public static Customer getCustomer(String email) {
-        for(Customer customer1: customerList) {
+        for(Customer customer1: Customer.customerList) {
             if(customer1.email.equals(email)) {
                 foundCustomer = customer1;
             }
@@ -25,6 +36,6 @@ public class CustomerService {
     }
 
     public static List<Customer> getAllCustomers() {
-        return customerList;
+        return Customer.customerList;
     }
 }

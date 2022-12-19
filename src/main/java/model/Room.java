@@ -1,11 +1,16 @@
 package model;
 
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 public class Room implements IRoom {
 
-    public String roomNumber;
-    public Double price;
-    public RoomType roomType;
-    public boolean isFree;
+    private final String roomNumber;
+    private final Double price;
+    private final RoomType roomType;
+    private boolean isFree;
+
+    public static final List<Room> roomList = new CopyOnWriteArrayList<>();
 
     public Room(String roomNumber, Double price, RoomType roomType) {
         this.roomNumber = roomNumber;

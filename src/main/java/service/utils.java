@@ -2,10 +2,12 @@ package service;
 
 import Menu.AdminMenu;
 import Menu.MainMenu;
+import api.CustomExceptions;
+
 import java.util.Scanner;
 
 public class utils {
-    public static void exitAdminMenu() {
+    public static void exitAdminMenu() throws CustomExceptions {
         System.out.println("Enter 1 to go back to admin menu or 2 to exit");
         Scanner scanner = new Scanner(System.in);
         int option2 = scanner.nextInt();
@@ -20,7 +22,7 @@ public class utils {
         }
     }
 
-        public static void exitMainMenu(){
+        public static void exitMainMenu() throws CustomExceptions {
         System.out.println("Enter 1 to go back to main menu or 2 to exit");
         Scanner scanner = new Scanner(System.in);
         int option2 = scanner.nextInt();

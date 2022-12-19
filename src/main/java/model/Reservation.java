@@ -1,10 +1,15 @@
 package model;
 
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 public class Reservation {
     public  Customer customer;
     public  IRoom room;
     public  String checkInDate;
     public  String checkOutDate;
+    public static List<Reservation> reservationList = new CopyOnWriteArrayList<>();
+
 
     public Reservation(Customer customer, IRoom room, String checkInDate, String checkOutDate) {
         this.customer = customer;

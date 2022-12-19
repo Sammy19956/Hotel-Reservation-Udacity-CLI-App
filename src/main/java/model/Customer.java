@@ -1,11 +1,15 @@
 package model;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Customer {
-    public String firstName;
+    private String firstName;
     public String lastName;
     public String email;
+
+    public static List<Customer> customerList = new CopyOnWriteArrayList<>();
 
     public Customer(String firstName, String lastName, String email) {
         String regex = "^(.+)@(.+)$";

@@ -1,24 +1,16 @@
 package api;
 
-import model.Customer;
-import model.IRoom;
-import model.Room;
-import model.RoomType;
-import service.ReservationService;
+import model.*;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class AdminResource {
-
-    public static Collection <Room> rooms = new CopyOnWriteArrayList<>();
     public static Customer getCustomer(String email) {
         return null;
     }
 
-    public static Room addRoom() {
+    public static void addRoom() throws CustomExceptions {
         System.out.println("Enter room number: ");
 
         Scanner scanner2 = new Scanner(System.in);
@@ -42,12 +34,19 @@ public class AdminResource {
                 System.out.println("Invalid option");
                 break;
         }
-        rooms.add(new Room(roomNumber, roomPrice, roomType));
-        return new Room(roomNumber, roomPrice, roomType);
-    }
+        Room room = new Room(roomNumber, roomPrice, roomType);
+        Room.roomList.add(room);
+//        for (int i = 0; i < Room.roomList.size(); i++) {
+//            if(Room.roomList.get(i).getRoomNumber().equals(room.getRoomNumber())){
+//                throw new CustomExceptions("Room already exists");
+//            } else{
+//                Room.roomList.add(room);
+//            }
+//        }
+        }
 
     public static Collection<Room> getAllRooms() {
-      return rooms;
+      return Room.roomList;
     }
 
     public Collection<Customer> getAllCustomers() {
@@ -55,7 +54,7 @@ public class AdminResource {
     }
 
     public static void displayAllReservations() {
-        System.out.println(ReservationService.reservations);
+        System.out.println(Reservation.reservationList);
     }
 
 }
